@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#ffffff"
+    android:orientation="vertical" >
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="320dp"
+        android:layout_height="320dp"
+        android:layout_alignLeft="@+id/imageView2"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="58dp"
+        android:src="@drawable/cos_logo_bg" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="320dp"
+        android:layout_height="320dp"
+        android:layout_alignTop="@+id/imageView1"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/cos_logo_frame" />
+
+    <Button
+        android:id="@+id/btnStart"
+        android:layout_width="270dp"
+        android:layout_height="50dp"
+        android:layout_alignLeft="@+id/btnExit"
+        android:layout_below="@+id/imageView1"
+        android:layout_marginTop="42dp"
+        android:background="#DB5C65"
+        android:onClick="onClickStart"
+        android:text="START"
+        android:textSize="22dp"
+        android:textColor="#ffffff" />
+
+    <Button
+        android:id="@+id/btnExit"
+        android:layout_width="270dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/btnStart"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="19dp"
+        android:background="#C2A593"
+        android:onClick="onClickExit"
+        android:text="EXIT"
+        android:textSize="22dp"
+        android:textColor="#ffffff" />
+
+    <ToggleButton
+        android:id="@+id/muteButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/imageView2"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:background="#D8D8D8"
+        android:checked="true"
+        android:text="MUTE" />
+
+</RelativeLayout>

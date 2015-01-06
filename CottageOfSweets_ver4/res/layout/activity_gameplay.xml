@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#ffffff"
+    android:orientation="vertical" >
+
+    <Button
+        android:id="@+id/btnStart"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"
+        android:background="#E8817C"
+        android:onClick="onClickStart"
+        android:text="ANSWER"
+        android:textColor="#ffffff" />
+
+    <TextView
+        android:id="@+id/textScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="30dp"
+        android:text="SCORE 0"
+        android:textColor="#DB5C65"
+        android:textSize="18dp" />
+
+    <TextView
+        android:id="@+id/textStage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="30dp"
+        android:text="STAGE 1"
+        android:textColor="#DB5C65"
+        android:textSize="18dp" />
+
+  
+    <TextView
+        android:id="@+id/textTimeLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textScore"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="29dp"
+        android:background="#FFE8D3"
+        android:text=""
+        android:textAlignment="center"
+        android:textColor="#DB5C65"
+        android:textSize="50dp" />
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="330dp"
+        android:layout_height="330dp"
+        android:layout_alignTop="@+id/textTimeLeft"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="41dp"
+        android:src="@drawable/quiz1" />
+
+    <TextView
+        android:id="@+id/textCheck"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:text="CORRECT!"
+        android:textAlignment="center"
+        android:textColor="#dd280a"
+        android:textSize="35dp" />
+
+</RelativeLayout>
