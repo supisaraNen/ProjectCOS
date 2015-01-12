@@ -142,7 +142,7 @@ public class PhotoHandler implements PictureCallback {
 				int blueValue = Color.blue(pixel);
 				int greenValue = Color.green(pixel);
 				for(i=0;i<bColor.length;i++){
-					temp = Math.abs((redValue - bColor[i][0]) + (greenValue - bColor[i][1]) + (blueValue - bColor[i][2]));
+					temp = Math.abs((redValue - bColor[i][0])) + Math.abs((greenValue - bColor[i][1])) + Math.abs((blueValue - bColor[i][2]));
 					if(minDiff == 0){
 						minDiff = temp;
 						minPos = 0;
