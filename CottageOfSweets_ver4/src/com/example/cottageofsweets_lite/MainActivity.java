@@ -29,12 +29,7 @@ public class MainActivity extends Activity {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-				
-		///////////////////////////////////////////
-		////
-		///
-		///
-	
+					
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
@@ -47,14 +42,14 @@ public class MainActivity extends Activity {
 
 		 /////////// Logo animate////////////////
 
-		ImageView image2 = (ImageView) findViewById(R.id.imageView2);
+		ImageView image2 = (ImageView) findViewById(R.id.imageView1);
 		Animation animation = AnimationUtils.loadAnimation(context,
 				R.anim.rotate);
 		image2.startAnimation(animation);
 
 		 //////////////////////////////////////////
 
-		Button startBtn = (Button) findViewById(R.id.btnStart);
+		final Button startBtn = (Button) findViewById(R.id.btnStart);
 		
 		tbBGM = (ToggleButton)findViewById(R.id.muteButton);
         tbBGM.setOnCheckedChangeListener(new OnCheckedChangeListener() {
@@ -72,10 +67,11 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				
+			
 				MediaPlayer mpEffect = MediaPlayer.create(MainActivity.this, R.raw.button_click);		
 				mpEffect.start();
 				
+				startBtn.setBackgroundResource(R.drawable.btn_startgame_push);
 						
 				new CountDownTimer(1000, 500) {
 
@@ -121,8 +117,12 @@ public class MainActivity extends Activity {
 
 	public void onClickExit(View view) {
 		
+		Button btnExit = (Button) findViewById(R.id.btnExit);
+		btnExit.setBackgroundResource(R.drawable.btn_exit_push);
+		
 		MediaPlayer mpEffect = MediaPlayer.create(MainActivity.this, R.raw.button_click);		
 		mpEffect.start();
+		
 
 		AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
 				context);
@@ -157,7 +157,11 @@ public class MainActivity extends Activity {
 		alertDialog.show();
 
 	}
-
+	
+	public void onclickHowtoPlay(View view) {
+		Button btnHowtoPlay = (Button) findViewById(R.drawable.btn_howtoplay);
+		btnHowtoPlay.setBackgroundResource(R.drawable.btn_howtoplay_push);
 	
 	}
+}
 

@@ -19,6 +19,7 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.hardware.Camera;
@@ -70,6 +71,16 @@ public class GamePlay extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_gameplay);
 		TextView Show = (TextView) findViewById(R.id.textCheck);
+		
+		 TextView tx = (TextView)findViewById(R.id.textScore);
+		 TextView tx2 = (TextView)findViewById(R.id.textStage);
+		 TextView tx3 = (TextView)findViewById(R.id.textLife);
+		 TextView tx4 = (TextView)findViewById(R.id.textLevel);
+		 Typeface custom_font = Typeface.createFromAsset(getAssets(),"fonts/sp_aftershock.ttf");
+	     tx.setTypeface(custom_font);
+	     tx2.setTypeface(custom_font);
+	     tx3.setTypeface(custom_font);
+	     tx4.setTypeface(custom_font);
 
 		mpBgm = MediaPlayer.create(GamePlay.this, R.raw.bgm_sunnyside);
 		mpBgm.setLooping(true);
@@ -264,7 +275,7 @@ public class GamePlay extends Activity {
 		// dialog and set round , score to 0
 		if (round < selectQuiz.length) {
 			Log.i("Total", "R,G,B - Quiz : " + round);
-			ShowStage.setText("STAGE " + (round));
+			ShowStage.setText("Stage 1 - " + (round));
 			// sent quiz and all color to PhotoHandler class.
 			ph.setQuiz(color_list,
 					quiz_list.get(Integer.parseInt(selectQuiz[round])));
@@ -276,7 +287,7 @@ public class GamePlay extends Activity {
 					"com.example.cottageofsweets_lite");
 			quiz.setImageResource(resourceID);
 			round = round + 1;
-			ShowStage.setText("STAGE " + (round));
+			ShowStage.setText("Stage 1 - " + (round));
 		} else {
 
 			AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(

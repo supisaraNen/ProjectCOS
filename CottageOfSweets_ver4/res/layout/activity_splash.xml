@@ -7,11 +7,11 @@
 
     <ImageView
         android:id="@+id/imageLogo"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
+        android:layout_width="fill_parent"
+        android:layout_height="525px"
         android:layout_centerInParent="true"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:src="@drawable/cos_logo" />
+        android:src="@drawable/cos_logo_front" />
 
 </RelativeLayout>

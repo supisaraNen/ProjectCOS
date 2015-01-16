@@ -2,46 +2,40 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="#ffffff"
+    android:background="@drawable/gameplay_bg"
     android:orientation="vertical" >
 
     <Button
-        android:id="@+id/btnStart"
-        android:layout_width="250dp"
-        android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="30dp"
-        android:background="#E8817C"
-        android:onClick="onClickStart"
-        android:text="ANSWER"
-        android:textColor="#ffffff" />
-
-    <TextView
-        android:id="@+id/textScore"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/btnClose"
+        android:layout_width="62px"
+        android:layout_height="62px"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="30dp"
-        android:text="SCORE 0"
-        android:textColor="#DB5C65"
-        android:textSize="18dp" />
+        android:layout_marginRight="20px"
+        android:layout_marginTop="20px"
+        android:background="@drawable/btn_close"
+        android:onClick="onClickClose" />
+
+    <Button
+        android:id="@+id/btnAnswer"
+        android:layout_width="351px"
+        android:layout_height="82px"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="138px"
+        android:background="@drawable/btn_answer"
+        android:onClick="onClickAnswer" />
 
     <TextView
         android:id="@+id/textStage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="30dp"
-        android:text="STAGE 1"
-        android:textColor="#DB5C65"
-        android:textSize="18dp" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"
+        android:text="1-1"
+        android:textColor="#000000"
+        android:textSize="90px" />
 
-  
     <TextView
         android:id="@+id/textTimeLeft"
         android:layout_width="wrap_content"
@@ -75,5 +69,71 @@
         android:textAlignment="center"
         android:textColor="#dd280a"
         android:textSize="35dp" />
+
+    <TextView
+        android:id="@+id/textLife"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10px"
+        android:layout_marginLeft="14px"
+        android:text="LIFE "
+        android:textColor="#ffffff"
+        android:textSize="56px" />
+
+    <TextView
+        android:id="@+id/textScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="14px"
+        android:layout_marginTop="20px"
+        android:text="SCORE 0"
+        android:textColor="#ffffff"
+        android:textSize="56px" />
+
+    <ImageView
+        android:id="@+id/imageHeart1"
+        android:layout_width="42px"
+        android:layout_height="36px"
+        android:layout_alignBottom="@+id/textLife"
+        android:layout_marginBottom="15px"
+        android:layout_toRightOf="@+id/textLife"
+        android:src="@drawable/heart" />
+
+    <ImageView
+        android:id="@+id/imageHeart3"
+        android:layout_width="42px"
+        android:layout_height="36px"
+        android:layout_alignTop="@+id/imageHeart2"
+        android:layout_toRightOf="@+id/imageHeart2"
+        android:src="@drawable/heart" />
+
+     <TextView
+        android:id="@+id/textLevel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10px"
+        android:layout_toLeftOf="@+id/imagelvcandy"
+        android:text="LEVEL "
+        android:textColor="#ffffff"
+        android:textSize="56px" />
+
+    <ImageView
+        android:id="@+id/imageHeart2"
+        android:layout_width="42px"
+        android:layout_height="36px"
+        android:layout_alignTop="@+id/imageHeart1"
+        android:layout_toRightOf="@+id/imageHeart1"
+        android:src="@drawable/heart" />
+
+    <ImageView
+        android:id="@+id/imagelvcandy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textLevel"
+        android:layout_alignRight="@+id/btnClose"
+        
+        android:src="@drawable/candy_lv01" />
 
 </RelativeLayout>
