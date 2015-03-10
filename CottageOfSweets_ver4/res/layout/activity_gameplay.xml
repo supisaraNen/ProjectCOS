@@ -129,11 +129,11 @@
 
     <ImageView
         android:id="@+id/imagelvcandy"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="88px"
+        android:layout_height="72px"
         android:layout_alignBottom="@+id/textLevel"
         android:layout_alignRight="@+id/btnClose"
         
-        android:src="@drawable/candy_lv01" />
+        android:src="@drawable/lv12" />
 
 </RelativeLayout>

@@ -11,7 +11,7 @@
         android:layout_height="525px"
         android:layout_alignLeft="@+id/imageView2"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="219px"
+        android:layout_marginTop="190px"
         android:src="@drawable/cos_logo_bg" />
 
     <ImageView
@@ -22,17 +22,27 @@
         android:layout_centerHorizontal="true"
         android:src="@drawable/cos_logo_front" />
 
+    <Button
+        android:id="@+id/btnContinue"
+        android:layout_width="351px"
+        android:layout_height="83px"
+        android:layout_below="@+id/imageView1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/btn_continue_lock"
+        android:onClick="onClickContinue" />
+
     <ToggleButton
         android:id="@+id/muteButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/imageView2"
+       android:layout_width="100px"
+        android:layout_height="80px" 
         android:layout_alignParentRight="true"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="89dp"
         android:background="#D8D8D8"
         android:checked="true"
-        android:text="MUTE" />
+        android:text="MUTE" /> 
 
     <Button
         android:id="@+id/btnExit"
@@ -40,19 +50,9 @@
         android:layout_height="83px"
         android:layout_alignLeft="@+id/btnHowtoPlay"
         android:layout_below="@+id/btnHowtoPlay"
-        android:layout_marginTop="13dp"
-        android:background="@drawable/btn_exit"
+        android:layout_marginTop="5dp"
+       android:background="@drawable/selector_btnexit"
         android:onClick="onClickExit" />
-
-    <Button
-        android:id="@+id/btnStart"
-        android:layout_width="351px"
-        android:layout_height="83px"
-        android:layout_below="@+id/imageView1"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="25dp"
-        android:background="@drawable/btn_startgame"
-        android:onClick="onClickStart" />
 
     <Button
         android:id="@+id/btnHowtoPlay"
@@ -60,8 +60,18 @@
         android:layout_height="83px"
         android:layout_alignLeft="@+id/btnStart"
         android:layout_below="@+id/btnStart"
-        android:layout_marginTop="14dp"
-        android:background="@drawable/btn_howtoplay"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/selector_btnhowtoplay"
         android:onClick="onClickHowtoPlay" />
+
+    <Button
+        android:id="@+id/btnStart"
+        android:layout_width="351px"
+        android:layout_height="83px"
+        android:layout_alignLeft="@+id/btnContinue"
+        android:layout_below="@+id/btnContinue"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/selector_btnstart"
+        android:onClick="onClickStart" />
 
 </RelativeLayout>

@@ -79,10 +79,10 @@ public class PhotoHandler implements PictureCallback {
 			Bitmap b = BitmapFactory.decodeFile(filename);
 			//---------------------------------------------//
 			
-			Bitmap b2 = Bitmap.createBitmap(changeColorTo16(b));
+		//	Bitmap b2 = Bitmap.createBitmap(changeColorTo16(b));
 			
 			
-//			Bitmap b2 = b.copy(Bitmap.Config.RGB_565, true);
+		Bitmap b2 = b.copy(Bitmap.Config.RGB_565, true);
 			
 			FileOutputStream out = null;
 			try {

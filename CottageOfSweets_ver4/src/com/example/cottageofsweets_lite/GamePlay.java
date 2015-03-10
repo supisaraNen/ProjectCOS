@@ -10,6 +10,7 @@ import java.util.Vector;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -33,6 +34,8 @@ import android.os.Environment;
 import android.os.Vibrator;
 import android.util.Log;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.RotateAnimation;
@@ -51,6 +54,7 @@ public class GamePlay extends Activity {
 	MediaPlayer mpBgm;
 	int score = 0;
 	int start = 0;
+	boolean isCamOpen = false;
 
 	public Vector<Integer> checkQuiz = new Vector<Integer>();
 	String[] setQuiz = { "2,4,3,6,5,0,1,9,8,7", "0,2,4,9,1,6,3,5,7,8",
@@ -71,16 +75,17 @@ public class GamePlay extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_gameplay);
 		TextView Show = (TextView) findViewById(R.id.textCheck);
-		
-		 TextView tx = (TextView)findViewById(R.id.textScore);
-		 TextView tx2 = (TextView)findViewById(R.id.textStage);
-		 TextView tx3 = (TextView)findViewById(R.id.textLife);
-		 TextView tx4 = (TextView)findViewById(R.id.textLevel);
-		 Typeface custom_font = Typeface.createFromAsset(getAssets(),"fonts/sp_aftershock.ttf");
-	     tx.setTypeface(custom_font);
-	     tx2.setTypeface(custom_font);
-	     tx3.setTypeface(custom_font);
-	     tx4.setTypeface(custom_font);
+
+		TextView tx = (TextView) findViewById(R.id.textScore);
+		TextView tx2 = (TextView) findViewById(R.id.textStage);
+		TextView tx3 = (TextView) findViewById(R.id.textLife);
+		TextView tx4 = (TextView) findViewById(R.id.textLevel);
+		Typeface custom_font = Typeface.createFromAsset(getAssets(),
+				"fonts/sp_aftershock.ttf");
+		tx.setTypeface(custom_font);
+		tx2.setTypeface(custom_font);
+		tx3.setTypeface(custom_font);
+		tx4.setTypeface(custom_font);
 
 		mpBgm = MediaPlayer.create(GamePlay.this, R.raw.bgm_sunnyside);
 		mpBgm.setLooping(true);
@@ -94,7 +99,41 @@ public class GamePlay extends Activity {
 
 		textTimeLeft = (TextView) findViewById(R.id.textTimeLeft);
 
+		
 		// do we have a camera?
+		if (!isCamOpen) {
+
+			checkBoard();
+
+			// Toast.makeText(this,
+			// "Start Check Board",Toast.LENGTH_LONG).show();
+			//
+			// Toast.makeText(this,
+			// "Stop Check Board",Toast.LENGTH_LONG).show();
+		} else {
+			closeCam();
+		}
+
+		// if (!getPackageManager()
+		// .hasSystemFeature(PackageManager.FEATURE_CAMERA)) {
+		// Toast.makeText(this, "No camera on this device", Toast.LENGTH_LONG)
+		// .show();
+		// } else {
+		// cameraId = findFrontFacingCamera();
+		// if (cameraId < 0) {
+		// Toast.makeText(this, "No front facing camera found.",
+		// Toast.LENGTH_LONG).show();
+		// } else {
+		// camera = Camera.open(cameraId);
+		// // camera.setDisplayOrientation(90);
+		// // isCamOpen = true;
+		// Toast.makeText(this, "Camera Open", Toast.LENGTH_LONG).show();
+		//
+		// }
+		// }
+	}
+
+	public void openCamera() {
 		if (!getPackageManager()
 				.hasSystemFeature(PackageManager.FEATURE_CAMERA)) {
 			Toast.makeText(this, "No camera on this device", Toast.LENGTH_LONG)
@@ -106,22 +145,108 @@ public class GamePlay extends Activity {
 						Toast.LENGTH_LONG).show();
 			} else {
 				camera = Camera.open(cameraId);
-				camera.setDisplayOrientation(90);
+				isCamOpen = true;
 				Toast.makeText(this, "Camera Open", Toast.LENGTH_LONG).show();
 
 			}
 		}
 	}
 
+	public void closeCam() {
+		if (camera != null) {
+			camera.stopPreview();
+			camera.setPreviewCallback(null);
+			camera.release();
+			camera = null;
+			isCamOpen = false;
+		}
+
+	}
+
+	public void checkBoard() {
+
+		// custom dialog
+		final Dialog dialog = new Dialog(context);
+		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		dialog.setContentView(R.layout.custom_dialog);
+
+		// set the custom dialog components - text, image and button
+		TextView text = (TextView) dialog.findViewById(R.id.text);
+
+		Typeface custom_font2 = Typeface.createFromAsset(getAssets(),
+				"fonts/sp_aftershock.ttf");
+
+		text.setTypeface(custom_font2);
+
+		text.setText(" Please Check Your Board ? ");
+
+		Button dialogButtonOk = (Button) dialog
+				.findViewById(R.id.dialogButtonOk);
+
+		dialogButtonOk.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View view) {
+				// TODO Auto-generated method stub
+
+				Log.d(DEBUG_TAG, "camera open checkboard");
+				openCamera();
+				takePicture();
+				Log.d(DEBUG_TAG, "takepicture checkboard");
+				checkAgain();
+				dialog.dismiss();
+			}
+		});
+
+		dialog.show();
+
+	}
+
+	public void checkAgain() {
+
+		final Dialog dialog = new Dialog(context);
+		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		dialog.setContentView(R.layout.custom_dialog);
+
+		// set the custom dialog components - text, image and button
+		TextView text = (TextView) dialog.findViewById(R.id.text);
+
+		Typeface custom_font2 = Typeface.createFromAsset(getAssets(),
+				"fonts/sp_aftershock.ttf");
+
+		text.setTypeface(custom_font2);
+
+		text.setText("         TRY AGAIN ");
+
+		Button dialogButtonOk = (Button) dialog
+				.findViewById(R.id.dialogButtonOk);
+
+		dialogButtonOk.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View view) {
+				// TODO Auto-generated method stub
+
+				dialog.dismiss();
+			}
+		});
+
+		dialog.show();
+
+	}
+
 	// After click answer button
-	public void onClickStart(View view) {
-		final Button btnAnswer = (Button) findViewById(R.id.btnStart);
+	public void onClickAnswer(View view) {
+		final Button btnAnswer = (Button) findViewById(R.id.btnAnswer);
 		MediaPlayer mpEffect = MediaPlayer.create(GamePlay.this,
 				R.raw.button_click);
 		mpEffect.start();
 		TextView Show = (TextView) findViewById(R.id.textCheck);
 
 		Show.setText(" ");
+		// camera = Camera.open(cameraId);
+		if (!isCamOpen)
+			openCamera();
 
 		new CountDownTimer(14000, 1000) {
 
@@ -164,7 +289,7 @@ public class GamePlay extends Activity {
 	public void takePicture() {
 		// go to PhotoHandler class to manage the photo and check the answer.
 		Parameters camParameters = camera.getParameters();
-		camParameters.setWhiteBalance(Parameters.WHITE_BALANCE_FLUORESCENT);
+		camParameters.setWhiteBalance(Parameters.WHITE_BALANCE_AUTO);
 		camParameters.setSceneMode(Parameters.SCENE_MODE_AUTO);
 		camera.setParameters(camParameters);
 
@@ -216,7 +341,7 @@ public class GamePlay extends Activity {
 			@Override
 			public void onFinish() {
 				TextView Show = (TextView) findViewById(R.id.textCheck);
-
+				closeCam();
 				selectQuiz();
 				textTimeLeft.setText("");
 				Show.setText(" ");
@@ -351,4 +476,109 @@ public class GamePlay extends Activity {
 		// finish()
 	}
 
+	public void onClickClose(View view) {
+
+		final Button closeBtn = (Button) findViewById(R.id.btnClose);
+
+		MediaPlayer mpEffect = MediaPlayer.create(GamePlay.this,
+				R.raw.button_click);
+		mpEffect.start();
+
+		// new CountDownTimer(80,80) {
+		//
+		// @Override
+		// public void onTick(long millisUntilFinished) {
+		// // TODO Auto-generated method stub
+		// closeBtn.setBackgroundResource(R.drawable.btn_close_push);
+		//
+		// }
+		//
+		// @Override
+		// public void onFinish() {
+		// // TODO Auto-generated method stub
+		// closeBtn.setBackgroundResource(R.drawable.btn_close);
+		//
+		//
+		//
+		// }
+		// };
+
+		// custom dialog
+		final Dialog dialog = new Dialog(context);
+		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		dialog.setContentView(R.layout.custom);
+
+		// set the custom dialog components - text, image and button
+		TextView text = (TextView) dialog.findViewById(R.id.text);
+
+		Typeface custom_font = Typeface.createFromAsset(getAssets(),
+				"fonts/sp_aftershock.ttf");
+
+		text.setTypeface(custom_font);
+
+		text.setText("   BACK TO SELECT STAGE ?");
+
+		Button dialogButtonOk = (Button) dialog
+				.findViewById(R.id.dialogButtonOk);
+		Button dialogButtonCancel = (Button) dialog
+				.findViewById(R.id.dialogButtonCancel);
+		// if button is clicked, close the custom dialog
+
+		dialogButtonOk.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View view) {
+				// TODO Auto-generated method stub
+				GamePlay.this.finish();
+				closeBtn.setBackgroundResource(R.drawable.btn_close);
+			}
+		});
+
+		dialogButtonCancel.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+
+				dialog.dismiss();
+				closeBtn.setBackgroundResource(R.drawable.btn_close);
+
+			}
+		});
+
+		dialog.show();
+
+		// AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+		// context);
+		//
+		// // set title
+		// alertDialogBuilder.setTitle("Quit");
+		//
+		// // set dialog message
+		// alertDialogBuilder
+		// .setMessage("Back to select stage?")
+		// .setCancelable(false)
+		// .setPositiveButton("Yes",
+		// new DialogInterface.OnClickListener() {
+		// public void onClick(DialogInterface dialog, int id) {
+		// // if this button is clicked, close
+		// // current activity
+		// GamePlay.this.finish();
+		// }
+		// })
+		// .setNegativeButton("No", new DialogInterface.OnClickListener() {
+		// public void onClick(DialogInterface dialog, int id) {
+		// // if this button is clicked, just close
+		// // the dialog box and do nothing
+		// dialog.cancel();
+		// }
+		// });
+		//
+		// // create alert dialog
+		// AlertDialog alertDialog = alertDialogBuilder.create();
+		//
+		// // show it
+		// alertDialog.show();
+
+	}
 }
